@@ -50,20 +50,10 @@ public class LoginServlet extends HttpServlet {
                 String password1=rs.getString("password");
                 if(username.equals(username1) && password1.equals(password))
                 {
-                    //out.println("<b>"+"Login Success!!!"+"<br><br>");
-                    //out.println("<b>"+"Welcome,"+"<b>" + "<b>"+username+"<b>");
-                    request.setAttribute("id", rs.getInt("id"));
-                    request.setAttribute("username", rs.getString("username"));
-                    request.setAttribute("password", rs.getString("password"));
-                    request.setAttribute("email", rs.getString("email"));
-                    request.setAttribute("gender", rs.getString("gender"));
-                    request.setAttribute("birthDate", rs.getString("birthdate"));
-                    request.getRequestDispatcher("userInfo.jsp").forward(request,response);
-                }else{
-                    request.setAttribute("message","Username or Password WEERROR！！！");
-                    request.getRequestDispatcher("login.jsp").forward(request,response);
+                    out.println("<b>"+"Login Success!!!"+"<br><br>");
+                    out.println("<b>"+"Welcome,"+"<b>" + "<b>"+username+"<b>");
                 }
-            }
+                }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
