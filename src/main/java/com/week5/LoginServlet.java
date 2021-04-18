@@ -1,4 +1,7 @@
-package com.YuZhenghao.week5;
+package com.week5;
+
+import com.YuZhenghao.dao.Userdao;
+import com.YuZhenghao.model.User;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -7,7 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-@WebServlet(name = "LoginServlet", value = "/LoginServlet")
+@WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
     Connection con=null;
     @Override
@@ -26,7 +29,7 @@ public class LoginServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
     }
 
     @Override
@@ -34,12 +37,27 @@ public class LoginServlet extends HttpServlet {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
 
+        Userdao userDao=new Userdao();
+        try {
+            User user=userDao.findByUsernamePassword(con,username,password);
+            if(user!=null){
+                request.setAttribute("user",user);
+                request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request,response);
+            }else{
+                request.setAttribute("message","username or password Error");
+                request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
         out.println("<html>");
         out.println("<head><title>Login</title></head>");
         out.println("<body>");
-        String sql="select * from Usertable where username=? and password=?";
+        /*String sql="select * from Usertable where username=? and password=?";
         PreparedStatement pstmt= null;
         try {
             pstmt = con.prepareStatement(sql);
@@ -77,5 +95,8 @@ public class LoginServlet extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+         */
     }
+
 }
