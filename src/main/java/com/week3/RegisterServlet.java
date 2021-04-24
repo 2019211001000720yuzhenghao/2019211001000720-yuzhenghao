@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.*;
 
 
@@ -37,7 +36,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-doPost(request,response);
+        request.getRequestDispatcher("WEB-INF/views/register.jsp").forward(request,response);
     }
 
     @Override
@@ -61,7 +60,7 @@ doPost(request,response);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        response.setContentType("textml");
+        response.setContentType("text/html");
         //PrintWriter out=response.getWriter();
         //out.println("<html>");
         //out.println("<head><title>Register</title></head>");
@@ -85,7 +84,7 @@ doPost(request,response);
             //request.setAttribute("rsname",rs);
               //  request.getRequestDispatcher("userList.jsp").forward(request,response);
                 //System.out.println("i am RegisterServlet-->doPost()-->after forward()");
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("login");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
