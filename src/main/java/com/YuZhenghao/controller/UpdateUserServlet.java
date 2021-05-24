@@ -1,6 +1,6 @@
 package com.YuZhenghao.controller;
 
-import com.YuZhenghao.dao.Userdao;
+import com.YuZhenghao.dao.UserDao;
 import com.YuZhenghao.model.User;
 
 import javax.servlet.*;
@@ -48,7 +48,7 @@ public class UpdateUserServlet extends HttpServlet {
         user.setGender(Gender);
         user.setBirthDate(date);
 
-        Userdao userDao = new Userdao();
+        UserDao userDao = new UserDao();
 
 
             userDao.updateUser(con,user);

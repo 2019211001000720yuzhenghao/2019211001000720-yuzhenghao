@@ -1,6 +1,6 @@
 package com.week5;
 
-import com.YuZhenghao.dao.Userdao;
+import com.YuZhenghao.dao.UserDao;
 import com.YuZhenghao.model.User;
 
 import javax.servlet.*;
@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
 
-        Userdao userDao=new Userdao();
+        UserDao userDao=new UserDao();
         try {
             User user=userDao.findByUsernamePassword(con,username,password);
             if(user!=null){
