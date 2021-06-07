@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="yuzhenghao-2019211001000720-1.0-SNAPSHOT.war">
+    <root id="archive" name="YUzhenghao2019211001000720-1.0-SNAPSHOT.war">
       <element id="artifact" artifact-name="2019211001000720-yuzhenghao:war exploded" />
     </root>
   </artifact>
